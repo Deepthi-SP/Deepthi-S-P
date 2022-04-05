@@ -46,7 +46,7 @@ void insertEnd(int ele)
     temp->link=new;  
  }
 }
-void deleteBigin()
+void deleteBegin()
 {
   lstptr temp;
   if(First==NULL)
@@ -84,6 +84,55 @@ void deleteEnd()
   free(temp);    
  }
 }
+void deletespecific(int ele)
+{
+  lstptr temp,prev;
+    temp=First;
+  if(First==NULL)
+  {
+    printf("\nList is empty");
+  }
+  else if(First->data==ele)
+  {
+   if(First->link!=NULL)
+    First=First->link;
+    else
+    First=NULL;
+  }
+   else
+   { 
+      while(temp->data!=ele && temp->link!=NULL)
+      {
+        prev=temp;
+        temp=temp->link;
+      }  
+      if(temp->link==NULL && temp->data!=ele)
+      {
+         printf("item not found");
+         return;
+      }   
+          else if(temp->link!=NULL)
+          prev->link=temp->link;
+          else
+          prev->link=NULL;
+   }
+      free(temp);
+}    
+void insertspecific(int ele)
+{
+  lstptr temp,prev;
+    temp=First;
+  if(First==NULL)
+    printf("\nList is empty");
+  else if(First->data==ele)
+  {
+    if(First->link!=NULL)
+    First=First->link;
+    else
+    First=NULL;
+  }
+ 
+}     
 void display()
 {
   lstptr temp;
@@ -105,7 +154,7 @@ void main()
   int opt=1,ch,ele;
   while(opt)
   {
-  printf("\n1.Insert Begin \n2.Insert End \n3.Delete Begin \n4.Delete End \n5.Desplay");
+  printf("\n1.Insert Begin \t2.Insert End \t3.Delete Begin \t4.Delete End \t5.Deletespecific \t6.Insertspecific \t7.Desplay\n");
   printf("\nEnter your choice:\t");
   scanf("%d",&ch);
   switch(ch)
@@ -118,11 +167,19 @@ void main()
            scanf("%d",&ele);
            insertEnd(ele);
            break;       
-    case 3:deleteBigin();
+    case 3:deleteBegin();
            break;
     case 4:deleteEnd();
            break;       
-    case 5:display();
+    case 5:printf("enter a element:\t");
+           scanf("%d",&ele);
+           deletespecific(ele);
+           break;
+    case 6:printf("enter a element:\t");
+           scanf("%d",&ele);
+           insertspecific(ele);
+           break;       
+    case 7:display();
            break;
   }
   printf("\nDo you want to continue(1/0):\t");
