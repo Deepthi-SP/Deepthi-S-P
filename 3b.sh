@@ -3,7 +3,7 @@ read p1
 echo "enter confirmation password"
 stty -echo
 read p2
-stty -echo
+stty echo
 while [ "$p1" != "$p2" ]
 do
   echo "password does not match,re-enter the password"
@@ -13,14 +13,14 @@ echo "terminal lock"
 echo  "Enter password to unlock"
 stty -echo
 read p3
-stty -echo
+stty echo
  while [ "$p1" != "$p3" ]
  do
    clear
-   echo "terminal locked"
+   echo "-----------------------terminal locked-------------------"
    echo  "password does not match,re-enter passsword"
    stty -echo
    read p3
-   stty -echo
+   stty echo
  done
- echo "terminal unlock"   
+ echo "---------------------terminal unlock------------------------"   
